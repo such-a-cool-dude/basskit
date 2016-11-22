@@ -1,0 +1,53 @@
+$in-query : "false";
+
+@mixin min-width($number) {
+	@if($in-query == "false") {
+		$in-query : "true" !global;
+
+		@media (min-width: $number) {
+			@content;
+		}
+
+		$in-query : "false" !global;
+	}
+
+	@else {
+		@content;
+	}
+}
+
+@mixin resp-prefix($bp, $root) {
+	$name  : nth($bp, 1);
+
+	.#{$name}-#{$root} {
+		@content;
+	}
+}
+
+@mixin resp-prefix-with-query($bp, $root) {
+	$val : nth($bp, 2);
+
+	@include min-width($val) {
+		@include resp-prefix($bp, $root) {
+			@content;
+		}
+	}
+}
+
+@mixin util-resp-val($bp, $pair) {
+	$prop : nth($pair, 1);
+	$val  : nth($pair, 2);
+
+	@include resp-prefix-with-query($bp, $val) {
+		#{$prop}: $val;
+	}
+}
+
+@mixin util-resp-name-val($bp, $pair) {
+	$prop : nth($pair, 1);
+	$val  : nth($pair, 2);
+
+	@include resp-prefix-with-query($bp, $prop + '-' + $val) {
+		#{$prop}: $val;
+	}
+}

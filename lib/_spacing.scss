@@ -1,0 +1,48 @@
+@mixin _spacing-mixin($prefix, $short, $name, $spacings) {
+	$p : $prefix;
+	$s : $short;
+
+	$length : length($spacings);
+
+	@for $i from 1 through $length {
+		$spacing : nth($spacings, $i);
+		$n : $i;
+
+		@if nth($spacings, 1) == 0 {
+			$n : $n - 1;
+		}
+
+		.#{$p}#{$s}t#{$n}, .#{$p}#{$s}y#{$n}, .#{$p}#{$s}#{$n} {
+			#{$name}-top: $spacing;
+		}
+
+		.#{$p}#{$s}b#{$n}, .#{$p}#{$s}y#{$n}, .#{$p}#{$s}#{$n} {
+			#{$name}-bottom: $spacing;
+		}
+
+		.#{$p}#{$s}r#{$n}, .#{$p}#{$s}x#{$n}, .#{$p}#{$s}#{$n} {
+			#{$name}-right: $spacing;
+		}
+
+		.#{$p}#{$s}l#{$n}, .#{$p}#{$s}#{$n}, .#{$p}#{$s}#{$n} {
+			#{$name}-left: $spacing;
+		}
+	}
+}
+
+@mixin util-resp-margins($bp, $spacings) {
+	$prefix : nth($bp, 1) + '-';
+
+	@include min-width(nth($bp, 2)) {
+		@include _spacing-mixin($prefix, 'm', 'margin', $spacings);
+	}
+}
+
+@mixin util-resp-paddings($bp, $spacigs) {
+	$prefix : nth($bp, 1) + '-';
+
+	@include min-width(nth($bp, 2)) {
+		@include _spacing-mixin($prefix, 'p', 'padding', $spacings);
+	}
+}
+
