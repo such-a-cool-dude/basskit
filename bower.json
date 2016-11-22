@@ -1,0 +1,21 @@
+{
+  "name": "basskit",
+  "homepage": "https://github.com/such-a-cool-dude/basskit",
+  "authors": [
+    "professional_richard@zoho.com"
+  ],
+  "description": "Generate basscss-like classes using SASS.",
+  "main": "_basskit.scss",
+  "keywords": [
+    "css",
+    "scss"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
