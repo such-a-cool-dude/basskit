@@ -31,7 +31,13 @@
 }
 
 @mixin util-resp-margins($bp, $spacings) {
-	$prefix : nth($bp, 1) + '-';
+	@if($bp == none) {
+		$prefix : '';
+	}
+
+	@else {
+		$prefix : nth($bp, 1) + '-';
+	}
 
 	@include min-width(nth($bp, 2)) {
 		@include _spacing-mixin($prefix, 'm', 'margin', $spacings);

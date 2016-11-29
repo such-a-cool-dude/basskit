@@ -25,12 +25,21 @@ $in-query : "false";
 }
 
 @mixin resp-prefix-with-query($bp, $root) {
-	$val : nth($bp, 2);
+	@if($bp != none) {
 
-	@include min-width($val) {
-		@include resp-prefix($bp, $root) {
-			@content;
+		$val : nth($bp, 2);
+
+		@include min-width($val) {
+			@include resp-prefix($bp, $root) {
+				@content;
+			}
 		}
+	}
+
+	@else {
+
+		@content;
+
 	}
 }
 
