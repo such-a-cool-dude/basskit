@@ -31,23 +31,27 @@
 }
 
 @mixin util-resp-margins($bp, $spacings) {
-	@if($bp == none) {
-		$prefix : '';
-	}
+	$prefix : '';
 
-	@else {
+	@if($bp != none) {
 		$prefix : nth($bp, 1) + '-';
 	}
 
-	@include min-width(nth($bp, 2)) {
-		@include _spacing-mixin($prefix, 'm', 'margin', $spacings);
+	@if($bp != none) {
+		@include min-width($bp) {
+			@include _spacing-mixin($prefix, 'm', 'margin', $spacings);
+		}
 	}
 }
 
-@mixin util-resp-paddings($bp, $spacigs) {
-	$prefix : nth($bp, 1) + '-';
+@mixin util-resp-paddings($bp, $spacings) {
+	$prefix : '';
 
-	@include min-width(nth($bp, 2)) {
+	@if($bp != none) {
+		$prefix : nth($bp, 1) + '-';
+	}
+
+	@include min-width($bp) {
 		@include _spacing-mixin($prefix, 'p', 'padding', $spacings);
 	}
 }

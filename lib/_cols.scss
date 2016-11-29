@@ -1,0 +1,29 @@
+@mixin _cols-mixin ($prefix, $count) {
+	.#{$prefix}col {
+		float: left;
+		box-sizing: border-box;
+	}
+
+	.#{$prefix}col-right {
+		float: right;
+		box-sizing: border-box;
+	}
+
+	@for $i from 1 through $count {
+		.#{$prefix}col-#{$i} {
+			width: $i / $count * 100%;
+		}
+	}
+}
+
+@mixin util-resp-cols($bp, $count) {
+		$prefix : '';
+
+		@if($bp != none) {
+			$prefix : nth($bp, 1) + '-';
+		}
+
+		@include min-width($bp) {
+			@include _cols-mixin($prefix, $count);
+		}
+}

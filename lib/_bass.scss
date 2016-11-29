@@ -1,8 +1,18 @@
 $in-query : "false";
 
-@mixin min-width($number) {
-	@if($in-query == "false") {
+@mixin min-width($bp) {
+	@if($bp == none) {
+		@content;
+	}
+
+	@else if($in-query == "true")
+	{
+		@content;
+	}
+
+	@else {
 		$in-query : "true" !global;
+		$number   : nth($bp, 2);
 
 		@media (min-width: $number) {
 			@content;
@@ -11,9 +21,6 @@ $in-query : "false";
 		$in-query : "false" !global;
 	}
 
-	@else {
-		@content;
-	}
 }
 
 @mixin resp-prefix($bp, $root) {
@@ -26,10 +33,7 @@ $in-query : "false";
 
 @mixin resp-prefix-with-query($bp, $root) {
 	@if($bp != none) {
-
-		$val : nth($bp, 2);
-
-		@include min-width($val) {
+		@include min-width($bp) {
 			@include resp-prefix($bp, $root) {
 				@content;
 			}
