@@ -24,7 +24,7 @@
 			#{$name}-right: $spacing;
 		}
 
-		.#{$p}#{$s}l#{$n}, .#{$p}#{$s}#{$n}, .#{$p}#{$s}#{$n} {
+		.#{$p}#{$s}l#{$n}, .#{$p}#{$s}x#{$n}, .#{$p}#{$s}#{$n} {
 			#{$name}-left: $spacing;
 		}
 	}
@@ -37,10 +37,8 @@
 		$prefix : nth($bp, 1) + '-';
 	}
 
-	@if($bp != none) {
-		@include min-width($bp) {
-			@include _spacing-mixin($prefix, 'm', 'margin', $spacings);
-		}
+	@include min-width($bp) {
+		@include _spacing-mixin($prefix, 'm', 'margin', $spacings);
 	}
 }
 
