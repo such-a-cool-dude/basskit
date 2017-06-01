@@ -24,10 +24,18 @@ $in-query : "false";
 }
 
 @mixin resp-prefix($bp, $root) {
-	$name  : nth($bp, 1);
+	if($bp != none) {
+		$name  : nth($bp, 1);
 
-	.#{$name}-#{$root} {
-		@content;
+		.#{$name}-#{$root} {
+			@content;
+		}
+	}
+
+	else {
+		.#{$root} {
+			@content;
+		}
 	}
 }
 
@@ -41,9 +49,7 @@ $in-query : "false";
 	}
 
 	@else {
-
-		@content;
-
+		@include resp-prefix($bp, $root);
 	}
 }
 
