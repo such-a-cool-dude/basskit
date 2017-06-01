@@ -24,7 +24,7 @@ $in-query : "false";
 }
 
 @mixin resp-prefix($bp, $root) {
-	if($bp != none) {
+	@if($bp != none) {
 		$name  : nth($bp, 1);
 
 		.#{$name}-#{$root} {
@@ -32,7 +32,7 @@ $in-query : "false";
 		}
 	}
 
-	else {
+	@else {
 		.#{$root} {
 			@content;
 		}
