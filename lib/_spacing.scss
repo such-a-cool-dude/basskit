@@ -49,6 +49,8 @@
 		$prefix : nth($bp, 1) + '-';
 	}
 
-    @include _spacing-mixin($prefix, 'p', 'padding', $spacings);
+	@include min-width($bp) {
+		@include _spacing-mixin($prefix, 'p', 'padding', $spacings);
+	}
 }
 
